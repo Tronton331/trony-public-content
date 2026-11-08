@@ -1,0 +1,15 @@
+# profile.yaml —— 覆盖主题的 src/config/profileConfig.ts
+# 只写想改的键，其余保持主题默认值（主题升级后新默认值会自动生效）。
+avatar: assets/images/rina-avatar.jpg
+name: Trony
+bio: If you know you know
+links:
+  - name: GitHub
+    icon: fa7-brands:github
+    url: https://github.com/Tronton331
+  - name: Steam
+    icon: fa7-brands:steam
+    url: https://steamcommunity.com/id/tronton331/
+  - name: OSU!
+    icon: simple-icons:osu
+    url: https://osu.ppy.sh/users/23278785
