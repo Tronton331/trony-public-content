@@ -1,0 +1,39 @@
+name: Trigger Cloudflare Pages Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cloudflare-pages-deployment
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Trigger Cloudflare Deploy Hook
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger deployment
+        env:
+          DEPLOY_HOOK_URL: ${{ secrets.CLOUDFLARE_PAGES_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$DEPLOY_HOOK_URL" ]; then
+            echo "ERROR: Deploy Hook secret is missing."
+            exit 1
+          fi
+
+          curl \
+            --fail \
+            --silent \
+            --show-error \
+            --request POST \
+            "$DEPLOY_HOOK_URL"
+
+          echo "Cloudflare deployment successfully triggered."
